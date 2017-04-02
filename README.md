@@ -1,3 +1,11 @@
 # dirtyapi
 
-It is a program that connects google calendar and gmail. When you have an event coming up, the program will use the tone analyzer from IBM watson to get the tone and send a corresponding meme to the user email.
+It is a program that sends you memes on the phone according to the occassion you planned out on the google calendar. 
+
+How this works: 
+1. Get event from Google calendar
+2. Sends event name to IBW Watson's Tone Analyzer API
+3. Sends meme to phone according to tone result from API 
+
+
+
