@@ -1,6 +1,6 @@
 # dirtyapi
 
-It is a program that sends you memes on the phone according to the occassion you planned out on the google calendar. 
+A program that sends you memes on the phone according to the occassion you planned out on the google calendar. 
 
 How this works: 
 1. Get event from Google calendar
