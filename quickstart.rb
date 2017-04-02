@@ -1,7 +1,6 @@
 require 'google/apis/calendar_v3'
 require 'googleauth'
 require 'googleauth/stores/file_token_store'
-
 require 'fileutils'
 
 OOB_URI = 'urn:ietf:wg:oauth:2.0:oob'
@@ -55,12 +54,16 @@ response = service.list_events(calendar_id,
 puts "Upcoming events:"
 puts "No upcoming events found" if response.items.empty?
 
-f = File.open( "file.txt","w" )
+f = File.open( "event.txt","w" )
 
 response.items.each do |event|
   start = event.start.date || event.start.date_time
   puts "- #{event.summary} (#{start})"
 
-  f.write("- #{event.summary} (#{start})\n")
+  f.write("- #{event.summary} (#{start})")
 end
+
+
+
+
 

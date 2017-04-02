@@ -2,7 +2,7 @@ require 'unirest'
 
 #file = File.readlines('file.txt').each do |line|
 
-f = File.open("file.txt", "r")
+f = File.open("event.txt", "r")
 
 fileText = ""
 
@@ -10,11 +10,16 @@ f.each_line do |line|
 	fileText += line
 end
 
-textArray = fileText.split(/\((\d+)-(\d+)-(\d+\w+):(\d+):(\d+)\+(\d+):(\d+)\)/);
+#timeStamps = fileText.match(/\((\d+)-(\d+)-(\d+\w+):(\d+):(\d+)-(\d+):(\d+)\)/);
+timeStamps = fileText.scan(/\(\d+-\d+-\d+\w+:\d+:\d+-\d+:\d+\)/)
+textArray = fileText.split(/\(\d+-\d+-\d+\w+:\d+:\d+-\d+:\d+\)/)
 
-puts textArray
+# puts timeStamps
+# puts textArray
 
 textArray.each do |event|
+
+	event.slice!(0..1)
 
 	response = Unirest.post "https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2016-05-19", 
 		   auth:{:user =>"982eb111-ac1b-460e-bd01-06e326badedd", :password =>"XiHyf6ecArzu"},
@@ -47,5 +52,9 @@ textArray.each do |event|
  	puts "#{emotion}"
 
 	#puts  "#{emotionArr}"
+	f2 = File.open( "emotion.txt","w" )
+
+	f2.write("- #{emotion}")
+
 
 end
