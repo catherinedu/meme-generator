@@ -10,3 +10,32 @@ response = Unirest.post "https://gateway.watsonplatform.net/tone-analyzer/api/v3
 
 puts response.body
 
+arr = response.body
+
+#puts "#{arr}"
+
+emotionArr = arr['document_tone']['tone_categories'][0]['tones']
+
+scoreMax = 0
+indexMax = 0
+
+#find maxScore and the index associated
+for i in 0..4
+		score = emotionArr[i]['score']
+		if score > scoreMax 
+			scoreMax = score
+			indexMax = i 
+		end
+end
+
+#access emotion 
+emotion = emotionArr[indexMax]['tone_name']
+
+
+#puts "#{emotion}"
+
+
+puts  "#{emotionArr}"
+
+
+
